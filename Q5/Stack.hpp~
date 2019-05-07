@@ -1,0 +1,39 @@
+#ifndef  STACK_HPP
+#define STACK_HPP
+#include "Stack.h"
+
+template<class T>
+Stack<T>::Stack(int sizeofstack){
+  std::cout<<"stack created with size !"<<std::endl;
+  size = sizeofstack;
+  arr = new T[size];
+}
+
+template<class T>
+Stack<T>::Stack(const std::initializer_list<T>& list){
+  
+  std::cout<<"stack created with list!"<<std::endl;
+  size = list.size();
+  arr = new T[size];
+  int i{};
+  for(auto x:list){
+    arr[i] = x;
+    i++;
+  }
+  
+}
+template<class T>
+Stack<T>::Stack(){
+    size = 0;
+  arr = new T[size];
+  std::cout<<"defualt stack"<<std::endl;
+}
+template<class T>
+Stack<T>::~Stack(){
+  std::cout<<"bbye stack"<<std::endl;
+}
+
+template<class T>
+void Stack<T>::push(T elem)
+
+#endif

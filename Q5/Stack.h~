@@ -1,0 +1,21 @@
+#ifndef STACK_H
+#define STACK_H
+
+#include <iostream>
+#include <vector>
+
+template<class T>
+class Stack{
+ public:
+  Stack();
+  ~Stack();
+  void push(T elem);
+  node* pop();
+  bool isEmpty();
+  
+ private: 
+  int size;
+  T* arr;
+  //std::vector<T> V;
+};
+#endif

@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cmath>
+#include <set>
+#include <array>
+#include <ctime>
+#include <cstdlib>
+#include <algorithm>
+#include <vector>
+#include <unordered_set>
+template <typename T>
+void Show(const T& mycontainer);
+
+int main(){
+  int a[50]{};
+  std::generate_n(a,50,[](){static int j{};return(++j);});
+
+  std::unordered_set<int> myset;
+
+  myset.insert(a , a+50);
+  std::cout<<std::endl;
+  srand(time(0));
+  int c[50]{};
+  std::generate_n(c,50,[](){static int m{};return(++m);});
+  std::vector<int>myvec(c ,c+50);
+    
+  std::random_shuffle(myvec.begin(),myvec.end());
+  
+  int b[50]{};
+  std::generate_n(b,50,[](){return rand()%50+1;});
+  
+  std::unordered_set<int> mset(b, b+50);
+  std::vector<int> v1(50);
+  std::copy(mset.begin(),mset.end(),v1.begin());
+  std::fill(v1.end(),v1.end()+(50-v1.size()),0);
+  std::vector<int> resualt(50);
+
+  std::for_each(v1.begin() ,v1.end() ,[](int&n){n = pow(n,2);});
+  std::for_each(myvec.begin() ,myvec.end() ,[](int&n){n = pow(n,2);});
+  std::for_each(resualt.begin() ,resualt.end() ,[&v1,&myvec](int&n){int k=*(v1.end())-*(myvec.end()); myvec.pop_back();v1.pop_back();n =k ;});
+
+  Show(resualt);
+}
+
+template <typename T>
+void Show(const T& mycontainer){
+   for(auto iter{mycontainer.begin()} ; iter != mycontainer.end() ; ++iter)
+     std::cout<< *iter <<" ";
+   std::cout<<std::endl;
+}

@@ -1,0 +1,33 @@
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
+
+template <typename T>
+void Show(const T& mycontainer);
+int main(){
+  std::vector<std::unique_ptr<std::string>> myvec;
+  for(int i{} ; i < 1000 ; i++){
+    myvec.push_back(std::make_unique<std::string>("str"+std::to_string(i)));
+    std::cout << "in " << i << "th level";
+    Show(myvec);
+    //std::cout<<" strig is : "<< *myvec[i]<<std::endl;
+    
+  }
+  //  Show(myvec); 
+  std::vector<std::unique_ptr<std::string>> urvec;
+  urvec.reserve(1000);
+  for(int i{} ; i < 1000 ; i++){
+    urvec.push_back(std::make_unique<std::string>("str"+std::to_string(i)));
+    std::cout << "in " << i << "th level  ";
+    Show(urvec);
+    // std::cout<<" strig is : "<< *urvec[i]<<std::endl;
+    
+  }
+  
+}
+
+template <typename T>
+void Show(const T& mycontainer){
+  std::cout <<"size is :  "<<mycontainer.size() << "and capacity is : " <<mycontainer.capacity() << std::endl; 
+}
